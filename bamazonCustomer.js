@@ -1,5 +1,8 @@
+//Environment variables
 var mysql = require("mysql");
 var inquirer = require("inquirer");
+require("console.table");
+
 
 //connection info for the sql database
 var connection = mysql.createConnection({
@@ -12,13 +15,13 @@ var connection = mysql.createConnection({
   user: "root",
 
   //password and database
-  password: "Java1012jcv23!",
+  password: "",
   database: "bamazon"
 });
 
 connection.connect(function (err) {
   if (err) {
-    console.error("error connecting: " + err.stack);
+    console.error("Error connecting: " + err.stack);
   }
   loadProducts();
 });
@@ -39,7 +42,7 @@ function loadProducts() {
 function promptCustomerForItem(inventory) {
 
   inquirer
-    .prompt9([
+    .prompt([
       {
         type: "input",
         name: "choice",
